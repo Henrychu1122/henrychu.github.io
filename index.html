@@ -1,24 +1,1106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Henry Chu</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  text-align:center;
-  margin-top:120px;
-  background:#111;
-  color:white;
-}
-</style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Architecture portfolio of Henry Chu — infrastructure-driven spatial design, SCI-Arc, Cal Poly, Morphosis">
+    <meta property="og:title" content="Henry Chu | Architecture Portfolio">
+    <meta property="og:description" content="Architecture portfolio — South Park Data Park, Hydrantis, Jing Hua Performing Arts Center, Food Basket Trade Center">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="EXTRACTED_IMAGES/SPDP/spdp-raw-vignette.jpg">
+    <title>Henry Chu | Architecture</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230F0F0F' width='100' height='100'/><text x='50' y='65' font-size='70' font-weight='bold' text-anchor='middle' fill='%23E8E6E1' font-family='system-ui'>H</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            background-color: #0F0F0F;
+            color: #1A1A1A;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-weight: 700;
+        }
+
+        p, span, a, button {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        body > section:not(.section-dark) {
+            color: #1A1A1A;
+        }
+
+        body > section.section-dark {
+            color: #E8E6E1;
+        }
+
+        /* LAYOUT */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .container-tight {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            border-bottom: 1px solid rgba(200, 184, 154, 0.1);
+        }
+
+        nav.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        nav .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .nav-brand {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #E8E6E1;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #8A8A8A;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        nav .nav-links a:hover {
+            color: #C8B89A;
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            margin-right: -8px;
+        }
+
+        .nav-hamburger span {
+            width: 24px;
+            height: 2px;
+            background-color: #E8E6E1;
+            transition: all 0.3s ease;
+        }
+
+        .nav-hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .nav-hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 15, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 24px 40px;
+            border-bottom: 1px solid rgba(200, 184, 154, 0.1);
+            z-index: 999;
+        }
+
+        .nav-mobile-menu.active {
+            display: block;
+        }
+
+        .nav-mobile-menu a {
+            display: block;
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #8A8A8A;
+            text-decoration: none;
+            padding: 12px 0;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(200, 184, 154, 0.1);
+            transition: color 0.3s ease;
+        }
+
+        .nav-mobile-menu a:hover {
+            color: #C8B89A;
+        }
+
+        /* HERO / COVER */
+        section.cover {
+            min-height: 100vh;
+            background-color: #0F0F0F;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .cover-content h1 {
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            color: #E8E6E1;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .cover-content .subtitle {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: #C8B89A;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .cover-content .email {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #C8B89A;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .cover-content .email:hover {
+            opacity: 0.7;
+        }
+
+        .cover-scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .cover-scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: #C8B89A;
+            stroke-width: 1.5;
+            fill: none;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        .cover-scroll-text {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #8A8A8A;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        /* INTRO / ABOUT */
+        section.intro {
+            background-color: #0F0F0F;
+            padding: 100px 40px;
+            min-height: auto;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .intro-toc {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        .toc-item {
+            margin-bottom: 32px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .toc-item:hover {
+            opacity: 0.7;
+        }
+
+        .toc-number {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #8A8A8A;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .toc-title {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #E8E6E1;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .toc-meta {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: #5C5C5C;
+            text-transform: uppercase;
+        }
+
+        .toc-divider {
+            margin-bottom: 32px;
+            font-size: 13px;
+            color: #5C5C5C;
+        }
+
+        .intro-statement {
+            padding-top: 8px;
+        }
+
+        .intro-statement p {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #E8E6E1;
+            margin-bottom: 16px;
+        }
+
+        /* SECTIONS */
+        section.section-dark {
+            background-color: #0F0F0F;
+        }
+
+        section.section-light {
+            background-color: #F5F3EF;
+        }
+
+        /* PROJECT OPENER */
+        .project-opener {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 40px;
+            background-color: #0F0F0F;
+        }
+
+        .project-opener-content {
+            max-width: 800px;
+        }
+
+        .project-title {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: #E8E6E1;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .project-credits {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #8A8A8A;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .project-concept {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #E8E6E1;
+            max-width: 600px;
+        }
+
+        /* PROJECT GALLERY */
+        .project-gallery {
+            background-color: #F5F3EF;
+            padding: 80px 40px;
+        }
+
+        .gallery-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .gallery-image {
+            width: 100%;
+            max-width: 1400px;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .gallery-image:hover {
+            opacity: 0.95;
+        }
+
+        /* PROJECT CLOSER */
+        .project-closer {
+            background-color: #0F0F0F;
+            padding: 40px;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .closer-image {
+            width: 100%;
+            max-width: 1400px;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        /* PROFESSIONAL BREAK */
+        .professional-break {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 40px;
+            background-color: #0F0F0F;
+        }
+
+        .professional-content {
+            max-width: 900px;
+        }
+
+        .professional-title {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: #E8E6E1;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .professional-statement {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #E8E6E1;
+            max-width: 700px;
+        }
+
+        /* CLOSING */
+        section.closing {
+            min-height: 100vh;
+            background-color: #0F0F0F;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .closing-content {
+            max-width: 600px;
+        }
+
+        .closing-statement {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #E8E6E1;
+            margin-bottom: 32px;
+            text-transform: uppercase;
+        }
+
+        .closing-location {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #8A8A8A;
+            margin-bottom: 24px;
+        }
+
+        .closing-email {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #C8B89A;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            display: inline-block;
+        }
+
+        .closing-email:hover {
+            opacity: 0.7;
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 15, 15, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            animation: lightbox-in 0.3s ease;
+        }
+
+        @keyframes lightbox-in {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #E8E6E1;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            z-index: 2001;
+        }
+
+        .lightbox-close:hover {
+            opacity: 0.7;
+        }
+
+        /* SCROLL ANIMATIONS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            will-change: opacity, transform;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 32px;
+            }
+
+            .intro-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .cover-content h1 {
+                font-size: 56px;
+                letter-spacing: 4px;
+            }
+
+            .project-title {
+                font-size: 32px;
+                letter-spacing: 2px;
+            }
+
+            .professional-title {
+                font-size: 40px;
+                letter-spacing: 3px;
+            }
+
+            nav .nav-links {
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container,
+            .container-tight {
+                padding: 0 20px;
+            }
+
+            nav .nav-content {
+                padding: 12px 20px;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            nav .nav-links {
+                display: none;
+            }
+
+            .cover-content h1 {
+                font-size: 42px;
+                letter-spacing: 2px;
+            }
+
+            .cover-content .subtitle {
+                font-size: 12px;
+                letter-spacing: 1.5px;
+            }
+
+            section.intro {
+                padding: 60px 20px;
+            }
+
+            .intro-grid {
+                gap: 32px;
+            }
+
+            .project-opener {
+                padding: 60px 20px;
+                min-height: auto;
+            }
+
+            .project-title {
+                font-size: 24px;
+                letter-spacing: 1.5px;
+            }
+
+            .project-gallery {
+                padding: 48px 20px;
+            }
+
+            .gallery-grid {
+                gap: 20px;
+            }
+
+            .professional-break {
+                padding: 60px 20px;
+                min-height: auto;
+            }
+
+            .professional-title {
+                font-size: 32px;
+                letter-spacing: 2px;
+            }
+
+            .closing-statement {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .cover-content h1 {
+                font-size: 32px;
+                letter-spacing: 1.5px;
+            }
+
+            .cover-content .subtitle {
+                font-size: 11px;
+                letter-spacing: 1px;
+            }
+
+            .intro-toc {
+                border-bottom: 1px solid rgba(200, 184, 154, 0.1);
+                padding-bottom: 32px;
+            }
+
+            .toc-item {
+                margin-bottom: 24px;
+            }
+
+            .intro-statement {
+                padding-top: 0;
+                padding-top: 32px;
+            }
+
+            .intro-statement p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            .project-concept {
+                font-size: 13px;
+                line-height: 1.7;
+            }
+
+            .professional-statement {
+                font-size: 13px;
+                line-height: 1.7;
+            }
+
+            .cover-scroll-indicator {
+                bottom: 20px;
+            }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            nav {
+                display: none !important;
+            }
+
+            .cover-scroll-indicator {
+                display: none !important;
+            }
+
+            section {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+
+            .gallery-image,
+            .closer-image {
+                page-break-inside: avoid;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            section.section-dark {
+                background: white;
+                color: black;
+            }
+
+            section.section-light {
+                background: white;
+                color: black;
+            }
+
+            .project-title,
+            .professional-title,
+            .cover-content h1 {
+                color: black;
+            }
+
+            .project-credits,
+            .project-concept,
+            .professional-statement,
+            .closing-statement {
+                color: #333;
+            }
+
+            .closing-statement,
+            .closing-location,
+            .closing-email {
+                color: black;
+            }
+        }
+    </style>
+</head>
 <body>
 
-<h1>Henry Chu</h1>
-<p>Architect | Educator</p>
+    <!-- NAVIGATION -->
+    <nav id="mainNav">
+        <div class="nav-content">
+            <a href="#cover" class="nav-brand">Henry Chu</a>
+            <button class="nav-hamburger" id="navHamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#spdp">South Park</a></li>
+                <li><a href="#hydrantis">Hydrantis</a></li>
+                <li><a href="#jinghua">Jing Hua</a></li>
+                <li><a href="#professional">Professional</a></li>
+                <li><a href="#closing">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<p>Portfolio site coming soon.</p>
+    <div class="nav-mobile-menu" id="navMobileMenu">
+        <a href="#spdp">South Park Data Park</a>
+        <a href="#hydrantis">Hydrantis: Irwindale Reimagined</a>
+        <a href="#jinghua">Jing Hua Performing Arts Center</a>
+        <a href="#professional">Professional Work</a>
+        <a href="#closing">Contact</a>
+    </div>
+
+    <!-- COVER / HERO -->
+    <section class="cover section-dark" id="cover">
+        <div class="cover-content">
+            <h1>Henry Chu</h1>
+            <p class="subtitle">Architecture · Urban Infrastructure · Los Angeles</p>
+            <a href="mailto:henrychu1122@gmail.com" class="email">henrychu1122@gmail.com</a>
+        </div>
+        <div class="cover-scroll-indicator">
+            <p class="cover-scroll-text">Scroll</p>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- INTRO / ABOUT -->
+    <section class="intro section-dark" id="intro">
+        <div class="intro-grid">
+            <div class="intro-toc">
+                <div class="toc-item" onclick="document.getElementById('spdp').scrollIntoView({behavior: 'smooth'})">
+                    <div class="toc-number">01</div>
+                    <div class="toc-title">South Park Data Park</div>
+                    <div class="toc-meta">Cal Poly Pomona · Senior Thesis · 2018</div>
+                </div>
+                <div class="toc-item" onclick="document.getElementById('hydrantis').scrollIntoView({behavior: 'smooth'})">
+                    <div class="toc-number">02</div>
+                    <div class="toc-title">Hydrantis: Irwindale Reimagined</div>
+                    <div class="toc-meta">SCI-Arc · Design of Cities · 2021</div>
+                    <div class="toc-meta">★ Exhibited, SCI-Arc Symposium</div>
+                </div>
+                <div class="toc-item" onclick="document.getElementById('jinghua').scrollIntoView({behavior: 'smooth'})">
+                    <div class="toc-number">03</div>
+                    <div class="toc-title">Jing Hua Performing Arts Center</div>
+                    <div class="toc-meta">SCI-Arc · Thom Mayne Studio · 2022</div>
+                </div>
+                <div class="toc-divider">—</div>
+                <div class="toc-item" onclick="document.getElementById('professional').scrollIntoView({behavior: 'smooth'})">
+                    <div class="toc-title">Professional Work</div>
+                </div>
+                <div class="toc-item" onclick="document.getElementById('food-basket').scrollIntoView({behavior: 'smooth'})">
+                    <div class="toc-number">04</div>
+                    <div class="toc-title">Food Basket Trade Center</div>
+                    <div class="toc-meta">Morphosis · International Competition · 2023</div>
+                </div>
+            </div>
+            <div class="intro-statement fade-in">
+                <p>My work begins with infrastructure. Not as background condition, but as the generative material of architecture — the data networks, flood systems, and logistics structures that sustain cities but remain invisible within them. At Cal Poly and SCI-Arc, I designed buildings and settlements whose spatial logic derives entirely from these systems: a data center where the helical ramp is the network made walkable; a proto-city for 250,000 organized around water reclamation infrastructure rather than imposed on top of it. The question I am pursuing is architectural: when infrastructure becomes the building, what kind of public space does it produce?</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECT 1: SOUTH PARK DATA PARK -->
+    <section class="project-opener section-dark" id="spdp">
+        <div class="project-opener-content fade-in">
+            <h2 class="project-title">South Park Data Park</h2>
+            <p class="project-credits">Cal Poly Pomona  ·  Senior Thesis  ·  Spring 2018  ·  Michael Fox Studio</p>
+            <p class="project-concept">Los Angeles concentrates more internet exchange infrastructure within a single square mile than almost anywhere on earth. It is also entirely invisible. South Park Data Park proposes a new building type at 12th and Olive: a civic data center where the network becomes architecture — a vertical tower threaded by a public helical ramp, making the invisible exchange infrastructure walkable, legible, and inhabited. The subterranean botanical garden below grade functions as thermal buffer and public counterpoint to the machine above it.</p>
+        </div>
+    </section>
+
+    <section class="project-gallery section-light">
+        <div class="gallery-grid">
+            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-vignette.jpg" alt="South Park Data Park - Vignette" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-06.jpg" alt="South Park Data Park - Detail 06" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-07.jpg" alt="South Park Data Park - Detail 07" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-13.jpg" alt="South Park Data Park - Interior 13" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-14.jpg" alt="South Park Data Park - Interior 14" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-15.jpg" alt="South Park Data Park - Interior 15" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-16.jpg" alt="South Park Data Park - Interior 16" class="gallery-image fade-in" loading="lazy">
+        </div>
+    </section>
+
+    <section class="project-closer section-dark">
+        <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-19.jpg" alt="South Park Data Park - Atmospheric" class="closer-image fade-in" loading="lazy">
+    </section>
+
+    <!-- PROJECT 2: HYDRANTIS -->
+    <section class="project-opener section-dark" id="hydrantis">
+        <div class="project-opener-content fade-in">
+            <h2 class="project-title">Hydrantis: Irwindale Reimagined</h2>
+            <p class="project-credits">SCI-Arc  ·  Design of Cities  ·  Fall 2021  ·  Eui-Sung Yi  ·  ★ Exhibited, SCI-Arc Symposium</p>
+            <p class="project-concept">The San Gabriel River has been managed, channelized, and redirected for 250 years — yet its flood infrastructure remains entirely invisible to the settlements built around it. Hydrantis proposes to reverse this: a proto-city of 250,000 residents whose street grid, housing typology, and public space are derived entirely from the existing flood management system. The city's ground plane is designed for two simultaneous states — normal conditions and the 100-year flood event — so that the infrastructure is never hidden but always inhabited.</p>
+        </div>
+    </section>
+
+    <section class="project-gallery section-light">
+        <div class="gallery-grid">
+            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-1-top.jpg" alt="Hydrantis - Site 1" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-2-top.jpg" alt="Hydrantis - Plan 2" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-2-mid.jpg" alt="Hydrantis - Detail 2" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-3-top.jpg" alt="Hydrantis - Section 3" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-4-top.jpg" alt="Hydrantis - Perspective 4" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-4-bot.jpg" alt="Hydrantis - Detail 4B" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-5-top.jpg" alt="Hydrantis - Study 5" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-6-top.jpg" alt="Hydrantis - Final 6" class="gallery-image fade-in" loading="lazy">
+        </div>
+    </section>
+
+    <section class="project-closer section-dark">
+        <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-6-mid.jpg" alt="Hydrantis - Atmospheric" class="closer-image fade-in" loading="lazy">
+    </section>
+
+    <!-- PROJECT 3: JING HUA -->
+    <section class="project-opener section-dark" id="jinghua">
+        <div class="project-opener-content fade-in">
+            <h2 class="project-title">Jing Hua Performing Arts Center</h2>
+            <p class="project-credits">SCI-Arc  ·  Spring 2022  ·  Thom Mayne Studio</p>
+            <p class="project-concept">Most performing arts centers resolve the conflict between performance and rehearsal by separating them: back-of-house versus front-of-house, servant versus served. Jing Hua refuses this separation. The building is organized around a single continuous folded surface that compresses and expands between the three program states — rehearsal, performance, and the still hours between — so that the boundary between backstage, lobby, and outdoor terrace is not fixed but calibrated to the time of day and the event.</p>
+        </div>
+    </section>
+
+    <section class="project-gallery section-light">
+        <div class="gallery-grid">
+            <img src="EXTRACTED_IMAGES/JINGHUA/jinghua-01.jpg" alt="Jing Hua - Exterior 01" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/JINGHUA/jinghua-05.jpg" alt="Jing Hua - Interior 05" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/JINGHUA/jinghua-10.jpg" alt="Jing Hua - Section 10" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/JINGHUA/jinghua-15.jpg" alt="Jing Hua - Detail 15" class="gallery-image fade-in" loading="lazy">
+        </div>
+    </section>
+
+    <section class="project-closer section-dark">
+        <img src="EXTRACTED_IMAGES/JINGHUA/jinghua-20.jpg" alt="Jing Hua - Atmospheric" class="closer-image fade-in" loading="lazy">
+    </section>
+
+    <!-- PROFESSIONAL SECTION BREAK -->
+    <section class="professional-break section-dark" id="professional">
+        <div class="professional-content fade-in">
+            <h2 class="professional-title">Professional Work</h2>
+            <p class="professional-statement">At Morphosis (2021–2024), I contributed to international competition research, parametric massing development, and site analysis on projects at 59-hectare masterplan scale — and to the editorial work behind Morphosis: M3 (Rizzoli, 2024). The projects shown here represent the intersection of logistics infrastructure, urban form, and the firm's computational design methods.</p>
+        </div>
+    </section>
+
+    <!-- PROJECT 4: FOOD BASKET TRADE CENTER -->
+    <section class="project-opener section-dark" id="food-basket">
+        <div class="project-opener-content fade-in">
+            <h2 class="project-title">Food Basket Trade Center</h2>
+            <p class="project-credits">Morphosis  ·  International Competition  ·  2023  ·  Beijing, China  ·  59 HA</p>
+            <p class="project-concept">China's wholesale food infrastructure treats the public as peripheral — warehouse-scale logistics beside, not within, public life. This 59-hectare competition proposal outside Beijing derives its masterplan from bamboo weaving logic: a structural analogy that interlocks cold storage, trading floor, processing, and public market into a continuous section, so that interior and exterior circulate through each other rather than beside each other. Contributed at Morphosis as competition researcher and parametric massing analyst.</p>
+        </div>
+    </section>
+
+    <section class="project-gallery section-light">
+        <div class="gallery-grid">
+            <img src="EXTRACTED_IMAGES/FOOD_BASKET/fb-render-01.jpg" alt="Food Basket Trade Center - Render 01" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/FOOD_BASKET/fb-axon-exploded.jpg" alt="Food Basket Trade Center - Axonometric" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/FOOD_BASKET/fb-siteplan.jpg" alt="Food Basket Trade Center - Site Plan" class="gallery-image fade-in" loading="lazy">
+            <img src="EXTRACTED_IMAGES/FOOD_BASKET/fb-plan-01.jpg" alt="Food Basket Trade Center - Plan 01" class="gallery-image fade-in" loading="lazy">
+        </div>
+    </section>
+
+    <section class="project-closer section-dark">
+        <img src="EXTRACTED_IMAGES/FOOD_BASKET/fb-axon-prog.jpg" alt="Food Basket Trade Center - Atmospheric" class="closer-image fade-in" loading="lazy">
+    </section>
+
+    <!-- CLOSING -->
+    <section class="closing section-dark" id="closing">
+        <div class="closing-content fade-in">
+            <p class="closing-statement">Available for graduate school and professional opportunities.</p>
+            <p class="closing-location">Los Angeles — open to relocation.</p>
+            <a href="mailto:henrychu1122@gmail.com" class="closing-email">henrychu1122@gmail.com</a>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        // NAVIGATION
+        const nav = document.getElementById('mainNav');
+        const navHamburger = document.getElementById('navHamburger');
+        const navMobileMenu = document.getElementById('navMobileMenu');
+
+        let lastScrollY = 0;
+        let ticking = false;
+
+        function updateNavVisibility() {
+            const scrollY = window.scrollY;
+            if (scrollY > 100) {
+                nav.classList.add('visible');
+            } else {
+                nav.classList.remove('visible');
+            }
+            lastScrollY = scrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateNavVisibility);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        navHamburger.addEventListener('click', () => {
+            navHamburger.classList.toggle('active');
+            navMobileMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navHamburger.classList.remove('active');
+                navMobileMenu.classList.remove('active');
+            });
+        });
+
+        // SCROLL ANIMATIONS
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // LIGHTBOX
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxClose = document.querySelector('.lightbox-close');
+
+        document.querySelectorAll('.gallery-image, .closer-image').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImage.src = img.src;
+                lightboxImage.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+
+        // SCROLL INDICATOR CLICK
+        document.querySelector('.cover-scroll-indicator').addEventListener('click', () => {
+            document.getElementById('intro').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
 
 </body>
 </html>
