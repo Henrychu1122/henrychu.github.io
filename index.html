@@ -8,7 +8,7 @@
     <meta property="og:description" content="Architecture + Urban Infrastructure — Los Angeles">
     <meta property="og:type" content="website">
     <title>Henry Chu | Architecture</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230F0F0F' width='100' height='100'/><text x='50' y='65' font-size='70' font-weight='bold' text-anchor='middle' fill='%23E8E6E1' font-family='system-ui'>H</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140'><path d='M16 16 L124 16 L124 52 M124 88 L124 124 L16 124 L16 16' stroke='%23E8E6E1' stroke-width='10' stroke-linecap='square' fill='none'/><line x1='56' y1='70' x2='124' y2='70' stroke='%23C8B89A' stroke-width='3'/></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -64,9 +64,10 @@
             display: flex; justify-content: space-between; align-items: center;
         }
         .nav-brand {
-            font-size: 13px; font-weight: 600; letter-spacing: 2.5px;
-            color: var(--text-on-dark); text-decoration: none; text-transform: uppercase;
+            display: flex; align-items: center; text-decoration: none;
         }
+        .nav-logo { transition: opacity 0.3s; }
+        .nav-brand:hover .nav-logo { opacity: 0.8; }
         .nav-links { display: flex; gap: 36px; list-style: none; }
         .nav-links a {
             font-size: 11px; font-weight: 400; letter-spacing: 1.5px;
@@ -148,58 +149,26 @@
             margin-bottom: 60px;
         }
 
-        .about-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 80px; max-width: 1200px; margin: 0 auto;
-        }
+        .about-content { max-width: 720px; }
 
         .about-statement p {
             font-family: 'Source Serif 4', Georgia, serif;
-            font-size: 17px; line-height: 1.75; color: var(--text-on-dark);
+            font-size: 18px; line-height: 1.8; color: var(--text-on-dark);
             margin-bottom: 20px;
         }
 
-        .about-details { padding-top: 4px; }
-
-        .detail-block { margin-bottom: 48px; }
-        .detail-label {
-            font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500;
-            letter-spacing: 2.5px; color: var(--accent); text-transform: uppercase;
-            margin-bottom: 16px;
+        .about-footnotes {
+            margin-top: 48px; padding-top: 32px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
         }
-
-        .timeline-item {
-            display: grid; grid-template-columns: 1fr auto;
-            gap: 16px; align-items: baseline;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-        .timeline-item:first-child { padding-top: 0; }
-
-        .timeline-role {
-            font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
-            color: var(--text-on-dark); letter-spacing: 0.3px;
-        }
-        .timeline-place {
+        .footnote-item {
             font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400;
-            color: var(--text-caption); margin-top: 2px;
+            letter-spacing: 0.3px; color: var(--text-caption);
         }
-        .timeline-year {
-            font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400;
-            color: var(--text-caption); letter-spacing: 0.5px; white-space: nowrap;
-        }
-
-        .skills-grid {
-            display: flex; flex-wrap: wrap; gap: 8px;
-        }
-        .skill-tag {
-            font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
-            letter-spacing: 0.5px; color: var(--text-caption);
-            padding: 6px 14px; border: 1px solid var(--border-subtle);
-            border-radius: 2px; transition: all 0.3s;
-        }
-        .skill-tag:hover {
-            color: var(--accent); border-color: var(--accent);
+        .footnote-sep {
+            font-family: 'Inter', sans-serif; font-size: 12px;
+            color: rgba(138, 138, 138, 0.35);
         }
 
         /* ── DIVIDER ── */
@@ -364,7 +333,6 @@
 
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
-            .about-grid { grid-template-columns: 1fr; gap: 60px; }
             .projects-grid { grid-template-columns: 1fr; max-width: 700px; }
             .hero h1 { font-size: 52px; letter-spacing: 5px; }
             .nav-links { gap: 24px; }
@@ -421,7 +389,12 @@
     <!-- ── NAVIGATION ── -->
     <nav id="mainNav">
         <div class="nav-inner">
-            <a href="#top" class="nav-brand">Henry Chu</a>
+            <a href="HenryChu_Resume_2026.pdf" class="nav-brand" aria-label="Henry Chu — Resume" target="_blank" title="View Resume">
+                <svg class="nav-logo" width="28" height="28" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 16 L124 16 L124 52 M124 88 L124 124 L16 124 L16 16" stroke="#E8E6E1" stroke-width="8" stroke-linecap="square" fill="none"/>
+                    <line x1="56" y1="70" x2="124" y2="70" stroke="#C8B89A" stroke-width="3"/>
+                </svg>
+            </a>
             <button class="nav-hamburger" id="hamburger" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
@@ -443,6 +416,10 @@
 
     <!-- ── HERO ── -->
     <section class="hero" id="top">
+        <svg class="hero-logo" width="80" height="80" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 36px;">
+            <path d="M16 16 L124 16 L124 52 M124 88 L124 124 L16 124 L16 16" stroke="#E8E6E1" stroke-width="4" stroke-linecap="square" fill="none"/>
+            <line x1="56" y1="70" x2="124" y2="70" stroke="#C8B89A" stroke-width="2"/>
+        </svg>
         <h1>Henry Chu</h1>
         <p class="subtitle">Project Designer &middot; Los Angeles</p>
         <a href="mailto:hello@henrychu.studio" class="email-link">hello@henrychu.studio</a>
@@ -456,120 +433,22 @@
     <section class="about" id="about">
         <div class="container">
             <p class="about-header fade-in">About</p>
-            <div class="about-grid">
+            <div class="about-content">
                 <div class="about-statement fade-in delay-1">
                     <p>My work begins with infrastructure. Not as background condition, but as the generative material of architecture &mdash; the data networks, flood systems, and logistics structures that sustain cities but remain invisible within them.</p>
                     <p>At Cal Poly and SCI-Arc, I designed buildings and settlements whose spatial logic derives entirely from these systems: a data center where the helical ramp is the network made walkable; a proto-city for 250,000 organized around water reclamation infrastructure rather than imposed on top of it.</p>
                     <p>The question I am pursuing is architectural: when infrastructure becomes the building, what kind of public space does it produce?</p>
                 </div>
-
-                <div class="about-details fade-in delay-2">
-                    <!-- RECOGNITION -->
-                    <div class="detail-block">
-                        <p class="detail-label">Recognition</p>
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">Metropolis Magazine Future 100</p>
-                                <p class="timeline-place">Selected as one of 100 emerging designers reshaping the field</p>
-                            </div>
-                            <p class="timeline-year">2021</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">NOMA National Student of the Year</p>
-                                <p class="timeline-place">National Organization of Minority Architects</p>
-                            </div>
-                            <p class="timeline-year">2021</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">SCI-Arc &times; SoCal NOMA Full Scholarship</p>
-                                <p class="timeline-place">Merit-based full scholarship, M.S. Design of Cities</p>
-                            </div>
-                            <p class="timeline-year">2021</p>
-                        </div>
-                    </div>
-
-                    <!-- EDUCATION -->
-                    <div class="detail-block">
-                        <p class="detail-label">Education</p>
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">M.S. Design of Cities</p>
-                                <p class="timeline-place">SCI-Arc &middot; GPA 3.76 &middot; Full Scholarship</p>
-                            </div>
-                            <p class="timeline-year">2021 &ndash; 2022</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">Bachelor of Architecture</p>
-                                <p class="timeline-place">Cal Poly Pomona &middot; GPA 3.79 &middot; Magna Cum Laude</p>
-                            </div>
-                            <p class="timeline-year">2017 &ndash; 2021</p>
-                        </div>
-                    </div>
-
-                    <!-- PROFESSIONAL EXPERIENCE -->
-                    <div class="detail-block">
-                        <p class="detail-label">Experience</p>
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">Project Designer / BIM Lead</p>
-                                <p class="timeline-place">SWA Architects &middot; Los Angeles</p>
-                            </div>
-                            <p class="timeline-year">Dec 2024 &ndash; Present</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">Architectural Designer</p>
-                                <p class="timeline-place">Morphosis Architects &middot; Los Angeles</p>
-                            </div>
-                            <p class="timeline-year">Apr 2021 &ndash; Dec 2024</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">Adjunct Instructor &mdash; Architecture</p>
-                                <p class="timeline-place">Citrus College &middot; Glendora, CA</p>
-                            </div>
-                            <p class="timeline-year">Jan 2022 &ndash; Present</p>
-                        </div>
-                        <div class="timeline-item">
-                            <div>
-                                <p class="timeline-role">Architecture Intern</p>
-                                <p class="timeline-place">Foxlin Architects &middot; San Pedro, CA</p>
-                            </div>
-                            <p class="timeline-year">Jun 2019 &ndash; Dec 2020</p>
-                        </div>
-                    </div>
-
-                    <!-- SOFTWARE & SKILLS -->
-                    <div class="detail-block">
-                        <p class="detail-label">Software</p>
-                        <div class="skills-grid">
-                            <span class="skill-tag">Revit</span>
-                            <span class="skill-tag">Rhino 3D</span>
-                            <span class="skill-tag">Grasshopper</span>
-                            <span class="skill-tag">AutoCAD</span>
-                            <span class="skill-tag">Maya</span>
-                            <span class="skill-tag">SketchUp</span>
-                            <span class="skill-tag">ArcGIS</span>
-                            <span class="skill-tag">Adobe CC</span>
-                            <span class="skill-tag">V-Ray</span>
-                            <span class="skill-tag">D5 Render</span>
-                            <span class="skill-tag">Enscape</span>
-                            <span class="skill-tag">Lumion</span>
-                            <span class="skill-tag">Bluebeam</span>
-                        </div>
-                    </div>
-
-                    <!-- LANGUAGES -->
-                    <div class="detail-block">
-                        <p class="detail-label">Languages</p>
-                        <div class="skills-grid">
-                            <span class="skill-tag">English (Native)</span>
-                            <span class="skill-tag">Mandarin Chinese (Fluent)</span>
-                        </div>
-                    </div>
+                <div class="about-footnotes fade-in delay-2">
+                    <span class="footnote-item">B.Arch, Cal Poly Pomona</span>
+                    <span class="footnote-sep">&middot;</span>
+                    <span class="footnote-item">M.S. Design of Cities, SCI-Arc</span>
+                    <span class="footnote-sep">&middot;</span>
+                    <span class="footnote-item">Morphosis Architects</span>
+                    <span class="footnote-sep">&middot;</span>
+                    <span class="footnote-item">Metropolis Future 100</span>
+                    <span class="footnote-sep">&middot;</span>
+                    <span class="footnote-item">NOMA National Student of the Year</span>
                 </div>
             </div>
         </div>
@@ -587,7 +466,7 @@
         <!-- PROJECT 1: SPDP -->
         <div class="project-card fade-in">
             <div class="card-image">
-                <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-vignette.jpg" alt="South Park Data Park - Atmospheric render" loading="lazy">
+                <img src="thumbnails/hero-spdp.jpg" alt="South Park Data Park - Atmospheric render" loading="lazy">
             </div>
             <div class="card-info">
                 <p class="card-number">01</p>
@@ -605,7 +484,7 @@
         <!-- PROJECT 2: HYDRANTIS -->
         <div class="project-card fade-in delay-1">
             <div class="card-image">
-                <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-1-top.jpg" alt="Hydrantis - Aerial masterplan render" loading="lazy">
+                <img src="thumbnails/hero-hydrantis.jpg" alt="Hydrantis - Aerial masterplan render" loading="lazy">
             </div>
             <div class="card-info">
                 <p class="card-number">02</p>
@@ -623,7 +502,7 @@
         <!-- PROJECT 3: JING HUA -->
         <div class="project-card fade-in delay-2">
             <div class="card-image">
-                <img src="EXTRACTED_IMAGES/JINGHUA/jinghua-01.jpg" alt="Jing Hua Performing Arts Center - Concept" loading="lazy">
+                <img src="thumbnails/hero-jinghua.jpg" alt="Jing Hua Performing Arts Center - Concept" loading="lazy">
             </div>
             <div class="card-info">
                 <p class="card-number">03</p>
@@ -641,7 +520,7 @@
         <!-- PROJECT 4: FOOD BASKET -->
         <div class="project-card fade-in delay-3">
             <div class="card-image">
-                <img src="EXTRACTED_IMAGES/FOOD_BASKET/fb-render-01.jpg" alt="Food Basket Trade Center - Exterior render" loading="lazy">
+                <img src="thumbnails/hero-food-basket.jpg" alt="Food Basket Trade Center - Exterior render" loading="lazy">
             </div>
             <div class="card-info">
                 <p class="card-number">04</p>
@@ -667,8 +546,8 @@
 
     <!-- ── CLOSING / CONTACT ── -->
     <section class="closing" id="contact">
-        <p class="closing-statement fade-in">Available for graduate school and professional opportunities.</p>
-        <p class="closing-location fade-in delay-1">Los Angeles &mdash; open to relocation.</p>
+        <p class="closing-statement fade-in">Available for new opportunities.</p>
+        <p class="closing-location fade-in delay-1">Los Angeles, CA</p>
         <a href="mailto:hello@henrychu.studio" class="closing-email fade-in delay-2">hello@henrychu.studio</a>
     </section>
 
