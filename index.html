@@ -3,1102 +3,737 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Architecture portfolio of Henry Chu — infrastructure-driven spatial design, SCI-Arc, Cal Poly, Morphosis">
+    <meta name="description" content="Architecture portfolio of Henry Chu — infrastructure-driven spatial design, SCI-Arc, Cal Poly Pomona, Morphosis">
     <meta property="og:title" content="Henry Chu | Architecture Portfolio">
-    <meta property="og:description" content="Architecture portfolio — South Park Data Park, Hydrantis, Jing Hua Performing Arts Center, Food Basket Trade Center">
+    <meta property="og:description" content="Architecture + Urban Infrastructure — Los Angeles">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="EXTRACTED_IMAGES/SPDP/spdp-raw-vignette.jpg">
     <title>Henry Chu | Architecture</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230F0F0F' width='100' height='100'/><text x='50' y='65' font-size='70' font-weight='bold' text-anchor='middle' fill='%23E8E6E1' font-family='system-ui'>H</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Source Serif 4', Georgia, serif;
             background-color: #0F0F0F;
-            color: #1A1A1A;
+            color: #E8E6E1;
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* TYPOGRAPHY */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Inter', system-ui, sans-serif;
-            font-weight: 700;
+        /* ── TYPOGRAPHY ── */
+        h1, h2, h3, h4, h5, h6, nav, .label, .credits, .tag {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
 
-        p, span, a, button {
-            font-family: 'Inter', system-ui, sans-serif;
+        /* ── COLORS ── */
+        :root {
+            --dark: #0F0F0F;
+            --light: #F5F3EF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #5C5C5C;
+            --text-caption: #8A8A8A;
+            --text-on-dark: #E8E6E1;
+            --accent: #C8B89A;
+            --border-subtle: rgba(200, 184, 154, 0.12);
         }
 
-        body > section:not(.section-dark) {
-            color: #1A1A1A;
-        }
+        /* ── LAYOUT ── */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+        .container-wide { max-width: 1400px; margin: 0 auto; padding: 0 48px; }
 
-        body > section.section-dark {
-            color: #E8E6E1;
-        }
-
-        /* LAYOUT */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .container-tight {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        /* NAVIGATION */
+        /* ── NAVIGATION ── */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(15, 15, 15, 0.95);
-            backdrop-filter: blur(10px);
-            opacity: 0;
-            pointer-events: none;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(15, 15, 15, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            opacity: 0; pointer-events: none;
             transition: opacity 0.4s ease;
-            border-bottom: 1px solid rgba(200, 184, 154, 0.1);
         }
+        nav.visible { opacity: 1; pointer-events: auto; }
 
-        nav.visible {
-            opacity: 1;
-            pointer-events: auto;
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto; padding: 18px 48px;
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        nav .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 16px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .nav-brand {
+            font-size: 13px; font-weight: 600; letter-spacing: 2.5px;
+            color: var(--text-on-dark); text-decoration: none; text-transform: uppercase;
         }
-
-        nav .nav-brand {
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #E8E6E1;
-            text-transform: uppercase;
-            text-decoration: none;
-        }
-
-        nav .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        nav .nav-links a {
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: #8A8A8A;
-            text-decoration: none;
+        .nav-links { display: flex; gap: 36px; list-style: none; }
+        .nav-links a {
+            font-size: 11px; font-weight: 400; letter-spacing: 1.5px;
+            color: var(--text-caption); text-decoration: none; text-transform: uppercase;
             transition: color 0.3s ease;
-            text-transform: uppercase;
         }
-
-        nav .nav-links a:hover {
-            color: #C8B89A;
-        }
+        .nav-links a:hover { color: var(--accent); }
 
         .nav-hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            margin-right: -8px;
+            display: none; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer; padding: 8px;
+        }
+        .nav-hamburger span { width: 22px; height: 1.5px; background: var(--text-on-dark); transition: all 0.3s ease; }
+
+        .mobile-menu {
+            display: none; position: fixed; top: 58px; left: 0; right: 0;
+            background: rgba(15, 15, 15, 0.98); backdrop-filter: blur(12px);
+            padding: 20px 48px 28px; z-index: 999;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .mobile-menu.active { display: block; }
+        .mobile-menu a {
+            display: block; font-family: 'Inter', sans-serif;
+            font-size: 12px; letter-spacing: 1.5px; color: var(--text-caption);
+            text-decoration: none; padding: 14px 0; text-transform: uppercase;
+            border-bottom: 1px solid var(--border-subtle); transition: color 0.3s;
+        }
+        .mobile-menu a:last-child { border-bottom: none; }
+        .mobile-menu a:hover { color: var(--accent); }
+
+        /* ── HERO / COVER ── */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 80px 48px; position: relative;
+        }
+        .hero h1 {
+            font-size: 68px; font-weight: 700; letter-spacing: 8px;
+            color: var(--text-on-dark); text-transform: uppercase;
+            margin-bottom: 20px; line-height: 1.1;
+        }
+        .hero .subtitle {
+            font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 400;
+            letter-spacing: 4px; color: var(--accent); text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .hero .email-link {
+            font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300;
+            color: var(--accent); text-decoration: none; letter-spacing: 1px;
+            opacity: 0.7; transition: opacity 0.3s;
+        }
+        .hero .email-link:hover { opacity: 1; }
+
+        .scroll-cue {
+            position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            cursor: pointer; opacity: 0.5; transition: opacity 0.3s;
+        }
+        .scroll-cue:hover { opacity: 0.8; }
+        .scroll-cue span {
+            font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 3px;
+            color: var(--text-caption); text-transform: uppercase;
+        }
+        .scroll-cue .line {
+            width: 1px; height: 40px; background: var(--accent);
+            animation: pulse-line 2s ease-in-out infinite;
+        }
+        @keyframes pulse-line {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            50% { opacity: 0.8; transform: scaleY(1.2); }
         }
 
-        .nav-hamburger span {
-            width: 24px;
-            height: 2px;
-            background-color: #E8E6E1;
-            transition: all 0.3s ease;
+        /* ── ABOUT SECTION ── */
+        .about { padding: 120px 48px 100px; background: var(--dark); }
+
+        .about-header {
+            font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+            letter-spacing: 3px; color: var(--accent); text-transform: uppercase;
+            margin-bottom: 60px;
         }
 
-        .nav-hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(10px, 10px);
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 80px; max-width: 1200px; margin: 0 auto;
         }
 
-        .nav-hamburger.active span:nth-child(2) {
-            opacity: 0;
+        .about-statement p {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 17px; line-height: 1.75; color: var(--text-on-dark);
+            margin-bottom: 20px;
         }
 
-        .nav-hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
+        .about-details { padding-top: 4px; }
+
+        .detail-block { margin-bottom: 48px; }
+        .detail-label {
+            font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500;
+            letter-spacing: 2.5px; color: var(--accent); text-transform: uppercase;
+            margin-bottom: 16px;
         }
 
-        .nav-mobile-menu {
-            display: none;
-            position: fixed;
-            top: 60px;
-            left: 0;
-            right: 0;
-            background: rgba(15, 15, 15, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 24px 40px;
-            border-bottom: 1px solid rgba(200, 184, 154, 0.1);
-            z-index: 999;
-        }
-
-        .nav-mobile-menu.active {
-            display: block;
-        }
-
-        .nav-mobile-menu a {
-            display: block;
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: #8A8A8A;
-            text-decoration: none;
+        .timeline-item {
+            display: grid; grid-template-columns: 1fr auto;
+            gap: 16px; align-items: baseline;
             padding: 12px 0;
-            text-transform: uppercase;
-            border-bottom: 1px solid rgba(200, 184, 154, 0.1);
-            transition: color 0.3s ease;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .timeline-item:first-child { padding-top: 0; }
+
+        .timeline-role {
+            font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
+            color: var(--text-on-dark); letter-spacing: 0.3px;
+        }
+        .timeline-place {
+            font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400;
+            color: var(--text-caption); margin-top: 2px;
+        }
+        .timeline-year {
+            font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 400;
+            color: var(--text-caption); letter-spacing: 0.5px; white-space: nowrap;
         }
 
-        .nav-mobile-menu a:hover {
-            color: #C8B89A;
+        .skills-grid {
+            display: flex; flex-wrap: wrap; gap: 8px;
+        }
+        .skill-tag {
+            font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+            letter-spacing: 0.5px; color: var(--text-caption);
+            padding: 6px 14px; border: 1px solid var(--border-subtle);
+            border-radius: 2px; transition: all 0.3s;
+        }
+        .skill-tag:hover {
+            color: var(--accent); border-color: var(--accent);
         }
 
-        /* HERO / COVER */
-        section.cover {
-            min-height: 100vh;
-            background-color: #0F0F0F;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 40px;
+        /* ── DIVIDER ── */
+        .section-divider {
+            width: 100%; height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-subtle) 20%, var(--border-subtle) 80%, transparent);
         }
 
-        .cover-content h1 {
-            font-size: 72px;
-            font-weight: 700;
-            letter-spacing: 6px;
-            color: #E8E6E1;
-            margin-bottom: 24px;
-            line-height: 1.2;
-            text-transform: uppercase;
+        /* ── SELECTED WORK HEADER ── */
+        .work-header {
+            padding: 100px 48px 60px; background: var(--dark); text-align: center;
+        }
+        .work-header h2 {
+            font-size: 11px; font-weight: 500; letter-spacing: 3px;
+            color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
+        }
+        .work-header p {
+            font-family: 'Inter', sans-serif; font-size: 13px;
+            color: var(--text-caption); letter-spacing: 0.5px;
         }
 
-        .cover-content .subtitle {
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            letter-spacing: 3px;
-            color: #C8B89A;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-        }
-
-        .cover-content .email {
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            color: #C8B89A;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .cover-content .email:hover {
-            opacity: 0.7;
-        }
-
-        .cover-scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-        }
-
-        .cover-scroll-indicator svg {
-            width: 24px;
-            height: 24px;
-            stroke: #C8B89A;
-            stroke-width: 1.5;
-            fill: none;
-            animation: float 2s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(8px); }
-        }
-
-        .cover-scroll-text {
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 11px;
-            letter-spacing: 2px;
-            color: #8A8A8A;
-            text-transform: uppercase;
-            opacity: 0.6;
-        }
-
-        /* INTRO / ABOUT */
-        section.intro {
-            background-color: #0F0F0F;
-            padding: 100px 40px;
-            min-height: auto;
-        }
-
-        .intro-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 80px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .intro-toc {
-            font-family: 'Inter', system-ui, sans-serif;
-        }
-
-        .toc-item {
-            margin-bottom: 32px;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-        }
-
-        .toc-item:hover {
-            opacity: 0.7;
-        }
-
-        .toc-number {
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            color: #8A8A8A;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-
-        .toc-title {
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: #E8E6E1;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
-
-        .toc-meta {
-            font-size: 11px;
-            letter-spacing: 1px;
-            color: #5C5C5C;
-            text-transform: uppercase;
-        }
-
-        .toc-divider {
-            margin-bottom: 32px;
-            font-size: 13px;
-            color: #5C5C5C;
-        }
-
-        .intro-statement {
-            padding-top: 8px;
-        }
-
-        .intro-statement p {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-size: 16px;
-            line-height: 1.7;
-            color: #E8E6E1;
-            margin-bottom: 16px;
-        }
-
-        /* SECTIONS */
-        section.section-dark {
-            background-color: #0F0F0F;
-        }
-
-        section.section-light {
-            background-color: #F5F3EF;
-        }
-
-        /* PROJECT OPENER */
-        .project-opener {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 80px 40px;
-            background-color: #0F0F0F;
-        }
-
-        .project-opener-content {
-            max-width: 800px;
-        }
-
-        .project-title {
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 36px;
-            font-weight: 600;
-            letter-spacing: 3px;
-            color: #E8E6E1;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
-
-        .project-credits {
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            color: #8A8A8A;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-        }
-
-        .project-concept {
-            font-family: 'Source Serif 4', Georgia, serif;
-            font-size: 14px;
-            line-height: 1.8;
-            color: #E8E6E1;
-            max-width: 600px;
-        }
-
-        /* PROJECT GALLERY */
-        .project-gallery {
-            background-color: #F5F3EF;
-            padding: 80px 40px;
-        }
-
-        .gallery-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
+        /* ── PROJECT CARDS (PLACEHOLDERS) ── */
+        .projects-grid {
+            padding: 0 48px 120px; background: var(--dark);
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr;
             gap: 32px;
         }
 
-        .gallery-image {
-            width: 100%;
-            max-width: 1400px;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-            border-radius: 2px;
+        .project-card {
+            position: relative; overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            border-radius: 3px;
+            transition: all 0.4s ease;
+            cursor: default;
+        }
+        .project-card:hover {
+            border-color: rgba(200, 184, 154, 0.3);
+            transform: translateY(-2px);
         }
 
-        .gallery-image:hover {
-            opacity: 0.95;
+        .card-image {
+            width: 100%; aspect-ratio: 16 / 10;
+            background: #181818;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; position: relative;
+        }
+        .card-image img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+            opacity: 0.85;
+        }
+        .project-card:hover .card-image img {
+            transform: scale(1.02); opacity: 1;
         }
 
-        /* PROJECT CLOSER */
-        .project-closer {
-            background-color: #0F0F0F;
-            padding: 40px;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .card-placeholder {
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, #141414 0%, #1a1a1a 50%, #141414 100%);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .card-placeholder span {
+            font-family: 'Inter', sans-serif; font-size: 11px;
+            letter-spacing: 2px; color: var(--text-caption);
+            text-transform: uppercase; opacity: 0.4;
         }
 
-        .closer-image {
-            width: 100%;
-            max-width: 1400px;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            cursor: pointer;
+        .card-info { padding: 24px 28px 28px; }
+        .card-number {
+            font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400;
+            letter-spacing: 2px; color: var(--text-caption); margin-bottom: 8px;
+        }
+        .card-title {
+            font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600;
+            letter-spacing: 1.5px; color: var(--text-on-dark);
+            text-transform: uppercase; margin-bottom: 8px; line-height: 1.3;
+        }
+        .card-meta {
+            font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400;
+            letter-spacing: 1px; color: var(--text-caption);
+            text-transform: uppercase; margin-bottom: 12px; line-height: 1.5;
+        }
+        .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .card-tag {
+            font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 400;
+            letter-spacing: 0.8px; color: var(--text-caption);
+            padding: 4px 10px; border: 1px solid var(--border-subtle);
+            border-radius: 2px; text-transform: uppercase;
         }
 
-        /* PROFESSIONAL BREAK */
-        .professional-break {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 80px 40px;
-            background-color: #0F0F0F;
+        .coming-soon-badge {
+            position: absolute; top: 16px; right: 16px;
+            font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 500;
+            letter-spacing: 1.5px; color: var(--accent);
+            padding: 4px 12px; border: 1px solid rgba(200, 184, 154, 0.3);
+            border-radius: 2px; text-transform: uppercase;
+            background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(4px);
         }
 
-        .professional-content {
-            max-width: 900px;
+        /* ── PROFESSIONAL SECTION ── */
+        .pro-section {
+            padding: 100px 48px; background: var(--dark);
+            border-top: 1px solid var(--border-subtle);
         }
-
-        .professional-title {
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: 5px;
-            color: #E8E6E1;
-            margin-bottom: 40px;
-            text-transform: uppercase;
+        .pro-inner { max-width: 1200px; margin: 0 auto; }
+        .pro-label {
+            font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+            letter-spacing: 3px; color: var(--accent); text-transform: uppercase;
+            margin-bottom: 32px;
         }
-
-        .professional-statement {
+        .pro-statement {
             font-family: 'Source Serif 4', Georgia, serif;
-            font-size: 14px;
-            line-height: 1.8;
-            color: #E8E6E1;
+            font-size: 15px; line-height: 1.8; color: var(--text-on-dark);
             max-width: 700px;
         }
 
-        /* CLOSING */
-        section.closing {
-            min-height: 100vh;
-            background-color: #0F0F0F;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 40px;
+        /* ── CLOSING / CONTACT ── */
+        .closing {
+            min-height: 60vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 100px 48px; background: var(--dark);
+            border-top: 1px solid var(--border-subtle);
         }
-
-        .closing-content {
-            max-width: 600px;
-        }
-
         .closing-statement {
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            letter-spacing: 2px;
-            color: #E8E6E1;
-            margin-bottom: 32px;
-            text-transform: uppercase;
+            font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 400;
+            letter-spacing: 1.5px; color: var(--text-on-dark); margin-bottom: 16px;
         }
-
         .closing-location {
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            color: #8A8A8A;
-            margin-bottom: 24px;
+            font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
+            color: var(--text-caption); margin-bottom: 28px;
         }
-
         .closing-email {
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 14px;
-            font-weight: 400;
-            color: #C8B89A;
-            text-decoration: none;
-            transition: opacity 0.3s ease;
-            display: inline-block;
+            font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400;
+            color: var(--accent); text-decoration: none; letter-spacing: 1px;
+            padding: 12px 32px; border: 1px solid rgba(200, 184, 154, 0.3);
+            border-radius: 2px; transition: all 0.3s;
         }
-
         .closing-email:hover {
-            opacity: 0.7;
+            background: rgba(200, 184, 154, 0.08); border-color: var(--accent);
         }
 
-        /* LIGHTBOX */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(15, 15, 15, 0.95);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .footer {
+            padding: 32px 48px; background: var(--dark); text-align: center;
+            border-top: 1px solid var(--border-subtle);
+        }
+        .footer p {
+            font-family: 'Inter', sans-serif; font-size: 10px;
+            letter-spacing: 1.5px; color: rgba(138,138,138,0.4); text-transform: uppercase;
         }
 
-        .lightbox.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .lightbox-content {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            animation: lightbox-in 0.3s ease;
-        }
-
-        @keyframes lightbox-in {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #E8E6E1;
-            font-size: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.3s ease;
-            z-index: 2001;
-        }
-
-        .lightbox-close:hover {
-            opacity: 0.7;
-        }
-
-        /* SCROLL ANIMATIONS */
+        /* ── ANIMATIONS ── */
         .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            opacity: 0; transform: translateY(16px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
             will-change: opacity, transform;
         }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .fade-in.delay-1 { transition-delay: 0.1s; }
+        .fade-in.delay-2 { transition-delay: 0.2s; }
+        .fade-in.delay-3 { transition-delay: 0.3s; }
+        .fade-in.delay-4 { transition-delay: 0.4s; }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* RESPONSIVE */
+        /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
-            .container {
-                padding: 0 32px;
-            }
-
-            .intro-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .cover-content h1 {
-                font-size: 56px;
-                letter-spacing: 4px;
-            }
-
-            .project-title {
-                font-size: 32px;
-                letter-spacing: 2px;
-            }
-
-            .professional-title {
-                font-size: 40px;
-                letter-spacing: 3px;
-            }
-
-            nav .nav-links {
-                gap: 24px;
-            }
+            .about-grid { grid-template-columns: 1fr; gap: 60px; }
+            .projects-grid { grid-template-columns: 1fr; max-width: 700px; }
+            .hero h1 { font-size: 52px; letter-spacing: 5px; }
+            .nav-links { gap: 24px; }
         }
 
         @media (max-width: 768px) {
-            .container,
-            .container-tight {
-                padding: 0 20px;
-            }
+            .container, .container-wide { padding: 0 24px; }
+            .nav-inner { padding: 14px 24px; }
+            .nav-hamburger { display: flex; }
+            .nav-links { display: none; }
+            .mobile-menu { padding: 16px 24px 24px; }
 
-            nav .nav-content {
-                padding: 12px 20px;
-            }
+            .hero { padding: 60px 24px; }
+            .hero h1 { font-size: 38px; letter-spacing: 3px; }
+            .hero .subtitle { font-size: 11px; letter-spacing: 2.5px; }
 
-            .nav-hamburger {
-                display: flex;
-            }
+            .about { padding: 80px 24px 60px; }
+            .about-grid { gap: 48px; }
+            .about-statement p { font-size: 15px; }
 
-            nav .nav-links {
-                display: none;
-            }
+            .work-header { padding: 80px 24px 48px; }
+            .projects-grid { padding: 0 24px 80px; }
+            .card-info { padding: 20px 22px 24px; }
+            .card-title { font-size: 14px; }
 
-            .cover-content h1 {
-                font-size: 42px;
-                letter-spacing: 2px;
-            }
-
-            .cover-content .subtitle {
-                font-size: 12px;
-                letter-spacing: 1.5px;
-            }
-
-            section.intro {
-                padding: 60px 20px;
-            }
-
-            .intro-grid {
-                gap: 32px;
-            }
-
-            .project-opener {
-                padding: 60px 20px;
-                min-height: auto;
-            }
-
-            .project-title {
-                font-size: 24px;
-                letter-spacing: 1.5px;
-            }
-
-            .project-gallery {
-                padding: 48px 20px;
-            }
-
-            .gallery-grid {
-                gap: 20px;
-            }
-
-            .professional-break {
-                padding: 60px 20px;
-                min-height: auto;
-            }
-
-            .professional-title {
-                font-size: 32px;
-                letter-spacing: 2px;
-            }
-
-            .closing-statement {
-                font-size: 14px;
-            }
+            .pro-section { padding: 80px 24px; }
+            .closing { padding: 80px 24px; min-height: 50vh; }
+            .footer { padding: 24px; }
         }
 
-        @media (max-width: 600px) {
-            .cover-content h1 {
-                font-size: 32px;
-                letter-spacing: 1.5px;
-            }
-
-            .cover-content .subtitle {
-                font-size: 11px;
-                letter-spacing: 1px;
-            }
-
-            .intro-toc {
-                border-bottom: 1px solid rgba(200, 184, 154, 0.1);
-                padding-bottom: 32px;
-            }
-
-            .toc-item {
-                margin-bottom: 24px;
-            }
-
-            .intro-statement {
-                padding-top: 0;
-                padding-top: 32px;
-            }
-
-            .intro-statement p {
-                font-size: 14px;
-                line-height: 1.6;
-            }
-
-            .project-concept {
-                font-size: 13px;
-                line-height: 1.7;
-            }
-
-            .professional-statement {
-                font-size: 13px;
-                line-height: 1.7;
-            }
-
-            .cover-scroll-indicator {
-                bottom: 20px;
-            }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 30px; letter-spacing: 2px; }
+            .hero .subtitle { font-size: 10px; letter-spacing: 2px; }
+            .timeline-item { grid-template-columns: 1fr; gap: 4px; }
         }
 
-        /* PRINT STYLES */
+        /* ── PRINT ── */
         @media print {
-            nav {
-                display: none !important;
+            nav, .mobile-menu, .scroll-cue, .coming-soon-badge, .footer { display: none !important; }
+            body { background: white; color: black; }
+            .hero, .about, .work-header, .projects-grid, .pro-section, .closing {
+                background: white; color: black;
             }
-
-            .cover-scroll-indicator {
-                display: none !important;
-            }
-
-            section {
-                page-break-inside: avoid;
-                page-break-after: auto;
-            }
-
-            .gallery-image,
-            .closer-image {
-                page-break-inside: avoid;
-            }
-
-            body {
-                background: white;
-                color: black;
-            }
-
-            section.section-dark {
-                background: white;
-                color: black;
-            }
-
-            section.section-light {
-                background: white;
-                color: black;
-            }
-
-            .project-title,
-            .professional-title,
-            .cover-content h1 {
-                color: black;
-            }
-
-            .project-credits,
-            .project-concept,
-            .professional-statement,
-            .closing-statement {
-                color: #333;
-            }
-
-            .closing-statement,
-            .closing-location,
-            .closing-email {
-                color: black;
-            }
+            .hero h1, .card-title, .about-header, .detail-label, .pro-label { color: black; }
+            .about-statement p, .pro-statement { color: #333; }
+            .timeline-role, .card-meta, .closing-statement { color: #333; }
+            .project-card { border-color: #ccc; }
+            .skill-tag, .card-tag { border-color: #ccc; color: #555; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
+    <!-- ── NAVIGATION ── -->
     <nav id="mainNav">
-        <div class="nav-content">
-            <a href="#cover" class="nav-brand">Henry Chu</a>
-            <button class="nav-hamburger" id="navHamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+        <div class="nav-inner">
+            <a href="#top" class="nav-brand">Henry Chu</a>
+            <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
             </button>
             <ul class="nav-links">
-                <li><a href="#spdp">South Park</a></li>
-                <li><a href="#hydrantis">Hydrantis</a></li>
-                <li><a href="#jinghua">Jing Hua</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Work</a></li>
                 <li><a href="#professional">Professional</a></li>
-                <li><a href="#closing">Contact</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="nav-mobile-menu" id="navMobileMenu">
-        <a href="#spdp">South Park Data Park</a>
-        <a href="#hydrantis">Hydrantis: Irwindale Reimagined</a>
-        <a href="#jinghua">Jing Hua Performing Arts Center</a>
-        <a href="#professional">Professional Work</a>
-        <a href="#closing">Contact</a>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about">About</a>
+        <a href="#work">Selected Work</a>
+        <a href="#professional">Professional</a>
+        <a href="#contact">Contact</a>
     </div>
 
-    <!-- COVER / HERO -->
-    <section class="cover section-dark" id="cover">
-        <div class="cover-content">
-            <h1>Henry Chu</h1>
-            <p class="subtitle">Architecture · Urban Infrastructure · Los Angeles</p>
-            <a href="mailto:henrychu1122@gmail.com" class="email">henrychu1122@gmail.com</a>
-        </div>
-        <div class="cover-scroll-indicator">
-            <p class="cover-scroll-text">Scroll</p>
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+    <!-- ── HERO ── -->
+    <section class="hero" id="top">
+        <h1>Henry Chu</h1>
+        <p class="subtitle">Project Designer &middot; Los Angeles</p>
+        <a href="mailto:hello@henrychu.studio" class="email-link">hello@henrychu.studio</a>
+        <div class="scroll-cue" id="scrollCue">
+            <span>Scroll</span>
+            <div class="line"></div>
         </div>
     </section>
 
-    <!-- INTRO / ABOUT -->
-    <section class="intro section-dark" id="intro">
-        <div class="intro-grid">
-            <div class="intro-toc">
-                <div class="toc-item" onclick="document.getElementById('spdp').scrollIntoView({behavior: 'smooth'})">
-                    <div class="toc-number">01</div>
-                    <div class="toc-title">South Park Data Park</div>
-                    <div class="toc-meta">Cal Poly Pomona · Senior Thesis · 2018</div>
+    <!-- ── ABOUT ── -->
+    <section class="about" id="about">
+        <div class="container">
+            <p class="about-header fade-in">About</p>
+            <div class="about-grid">
+                <div class="about-statement fade-in delay-1">
+                    <p>My work begins with infrastructure. Not as background condition, but as the generative material of architecture &mdash; the data networks, flood systems, and logistics structures that sustain cities but remain invisible within them.</p>
+                    <p>At Cal Poly and SCI-Arc, I designed buildings and settlements whose spatial logic derives entirely from these systems: a data center where the helical ramp is the network made walkable; a proto-city for 250,000 organized around water reclamation infrastructure rather than imposed on top of it.</p>
+                    <p>The question I am pursuing is architectural: when infrastructure becomes the building, what kind of public space does it produce?</p>
                 </div>
-                <div class="toc-item" onclick="document.getElementById('hydrantis').scrollIntoView({behavior: 'smooth'})">
-                    <div class="toc-number">02</div>
-                    <div class="toc-title">Hydrantis: Irwindale Reimagined</div>
-                    <div class="toc-meta">SCI-Arc · Design of Cities · 2021</div>
-                    <div class="toc-meta">★ Exhibited, SCI-Arc Symposium</div>
-                </div>
-                <div class="toc-item" onclick="document.getElementById('jinghua').scrollIntoView({behavior: 'smooth'})">
-                    <div class="toc-number">03</div>
-                    <div class="toc-title">Jing Hua Performing Arts Center</div>
-                    <div class="toc-meta">SCI-Arc · Thom Mayne Studio · 2022</div>
-                </div>
-                <div class="toc-divider">—</div>
-                <div class="toc-item" onclick="document.getElementById('professional').scrollIntoView({behavior: 'smooth'})">
-                    <div class="toc-title">Professional Work</div>
-                </div>
-                <div class="toc-item" onclick="document.getElementById('food-basket').scrollIntoView({behavior: 'smooth'})">
-                    <div class="toc-number">04</div>
-                    <div class="toc-title">Food Basket Trade Center</div>
-                    <div class="toc-meta">Morphosis · International Competition · 2023</div>
+
+                <div class="about-details fade-in delay-2">
+                    <!-- RECOGNITION -->
+                    <div class="detail-block">
+                        <p class="detail-label">Recognition</p>
+                        <div class="timeline-item">
+                            <div>
+                                <p class="timeline-role">Metropolis Magazine Future 100</p>
+                                <p class="timeline-place">Selected as one of 100 emerging designers reshaping the field</p>
+                            </div>
+                            <p class="timeline-year">2021</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div>
+                                <p class="timeline-role">NOMA National Student of the Year</p>
+                                <p class="timeline-place">National Organization of Minority Architects</p>
+                            </div>
+                            <p class="timeline-year">2021</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div>
+                                <p class="timeline-role">SCI-Arc &times; SoCal NOMA Full Scholarship</p>
+                                <p class="timeline-place">Merit-based full scholarship, M.S. Design of Cities</p>
+                            </div>
+                            <p class="timeline-year">2021</p>
+                        </div>
+                    </div>
+
+                    <!-- EDUCATION -->
+                    <div class="detail-block">
+                        <p class="detail-label">Education</p>
+                        <div class="timeline-item">
+                            <div>
+                                <p class="timeline-role">M.S. Design of Cities</p>
+                                <p class="timeline-place">SCI-Arc &middot; GPA 3.76 &middot; Full Scholarship</p>
+                            </div>
+                            <p class="timeline-year">2021 &ndash; 2022</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div>
+                                <p class="timeline-role">Bachelor of Architecture</p>
+                                <p class="timeline-place">Cal Poly Pomona &middot; GPA 3.79 &middot; Magna Cum Laude</p>
+                            </div>
+                            <p class="timeline-year">2017 &ndash; 2021</p>
+                        </div>
+                    </div>
+
+                    <!-- PROFESSIONAL EXPERIENCE -->
+                    <div class="detail-block">
+                        <p class="detail-label">Experience</p>
+                        <div class="timeline-item">
+                            <div>
+                                <p class="timeline-role">Project Designer / BIM Lead</p>
+                                <p class="timeline-place">SWA Architects &middot; Los Angeles</p>
+                            </div>
+                            <p class="timeline-year">Dec 2024 &ndash; Present</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div>
+                                <p class="timeline-role">Architectural Designer</p>
+                                <p class="timeline-place">Morphosis Architects &middot; Los Angeles</p>
+                            </div>
+                            <p class="timeline-year">Apr 2021 &ndash; Dec 2024</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div>
+                                <p class="timeline-role">Adjunct Instructor &mdash; Architecture</p>
+                                <p class="timeline-place">Citrus College &middot; Glendora, CA</p>
+                            </div>
+                            <p class="timeline-year">Jan 2022 &ndash; Present</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div>
+                                <p class="timeline-role">Architecture Intern</p>
+                                <p class="timeline-place">Foxlin Architects &middot; San Pedro, CA</p>
+                            </div>
+                            <p class="timeline-year">Jun 2019 &ndash; Dec 2020</p>
+                        </div>
+                    </div>
+
+                    <!-- SOFTWARE & SKILLS -->
+                    <div class="detail-block">
+                        <p class="detail-label">Software</p>
+                        <div class="skills-grid">
+                            <span class="skill-tag">Revit</span>
+                            <span class="skill-tag">Rhino 3D</span>
+                            <span class="skill-tag">Grasshopper</span>
+                            <span class="skill-tag">AutoCAD</span>
+                            <span class="skill-tag">Maya</span>
+                            <span class="skill-tag">SketchUp</span>
+                            <span class="skill-tag">ArcGIS</span>
+                            <span class="skill-tag">Adobe CC</span>
+                            <span class="skill-tag">V-Ray</span>
+                            <span class="skill-tag">D5 Render</span>
+                            <span class="skill-tag">Enscape</span>
+                            <span class="skill-tag">Lumion</span>
+                            <span class="skill-tag">Bluebeam</span>
+                        </div>
+                    </div>
+
+                    <!-- LANGUAGES -->
+                    <div class="detail-block">
+                        <p class="detail-label">Languages</p>
+                        <div class="skills-grid">
+                            <span class="skill-tag">English (Native)</span>
+                            <span class="skill-tag">Mandarin Chinese (Fluent)</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="intro-statement fade-in">
-                <p>My work begins with infrastructure. Not as background condition, but as the generative material of architecture — the data networks, flood systems, and logistics structures that sustain cities but remain invisible within them. At Cal Poly and SCI-Arc, I designed buildings and settlements whose spatial logic derives entirely from these systems: a data center where the helical ramp is the network made walkable; a proto-city for 250,000 organized around water reclamation infrastructure rather than imposed on top of it. The question I am pursuing is architectural: when infrastructure becomes the building, what kind of public space does it produce?</p>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ── SELECTED WORK ── -->
+    <section class="work-header" id="work">
+        <h2 class="fade-in">Selected Work</h2>
+        <p class="fade-in delay-1">Academic and professional projects &middot; 2018 &ndash; 2024</p>
+    </section>
+
+    <div class="projects-grid container">
+        <!-- PROJECT 1: SPDP -->
+        <div class="project-card fade-in">
+            <div class="card-image">
+                <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-vignette.jpg" alt="South Park Data Park - Atmospheric render" loading="lazy">
             </div>
+            <div class="card-info">
+                <p class="card-number">01</p>
+                <h3 class="card-title">South Park Data Park</h3>
+                <p class="card-meta">Cal Poly Pomona &middot; Senior Thesis &middot; 2018 &middot; Michael Fox Studio</p>
+                <div class="card-tags">
+                    <span class="card-tag">Building</span>
+                    <span class="card-tag">Infrastructure</span>
+                    <span class="card-tag">Los Angeles</span>
+                </div>
+            </div>
+            <span class="coming-soon-badge">Coming Soon</span>
         </div>
-    </section>
 
-    <!-- PROJECT 1: SOUTH PARK DATA PARK -->
-    <section class="project-opener section-dark" id="spdp">
-        <div class="project-opener-content fade-in">
-            <h2 class="project-title">South Park Data Park</h2>
-            <p class="project-credits">Cal Poly Pomona  ·  Senior Thesis  ·  Spring 2018  ·  Michael Fox Studio</p>
-            <p class="project-concept">Los Angeles concentrates more internet exchange infrastructure within a single square mile than almost anywhere on earth. It is also entirely invisible. South Park Data Park proposes a new building type at 12th and Olive: a civic data center where the network becomes architecture — a vertical tower threaded by a public helical ramp, making the invisible exchange infrastructure walkable, legible, and inhabited. The subterranean botanical garden below grade functions as thermal buffer and public counterpoint to the machine above it.</p>
+        <!-- PROJECT 2: HYDRANTIS -->
+        <div class="project-card fade-in delay-1">
+            <div class="card-image">
+                <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-1-top.jpg" alt="Hydrantis - Aerial masterplan render" loading="lazy">
+            </div>
+            <div class="card-info">
+                <p class="card-number">02</p>
+                <h3 class="card-title">Hydrantis: Irwindale Reimagined</h3>
+                <p class="card-meta">SCI-Arc &middot; Design of Cities &middot; 2021 &middot; Eui-Sung Yi<br>&#9733; Exhibited, SCI-Arc Symposium</p>
+                <div class="card-tags">
+                    <span class="card-tag">Urban</span>
+                    <span class="card-tag">Infrastructure</span>
+                    <span class="card-tag">250K Residents</span>
+                </div>
+            </div>
+            <span class="coming-soon-badge">Coming Soon</span>
         </div>
-    </section>
 
-    <section class="project-gallery section-light">
-        <div class="gallery-grid">
-            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-vignette.jpg" alt="South Park Data Park - Vignette" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-06.jpg" alt="South Park Data Park - Detail 06" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-07.jpg" alt="South Park Data Park - Detail 07" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-13.jpg" alt="South Park Data Park - Interior 13" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-14.jpg" alt="South Park Data Park - Interior 14" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-15.jpg" alt="South Park Data Park - Interior 15" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-16.jpg" alt="South Park Data Park - Interior 16" class="gallery-image fade-in" loading="lazy">
+        <!-- PROJECT 3: JING HUA -->
+        <div class="project-card fade-in delay-2">
+            <div class="card-image">
+                <img src="EXTRACTED_IMAGES/JINGHUA/jinghua-01.jpg" alt="Jing Hua Performing Arts Center - Concept" loading="lazy">
+            </div>
+            <div class="card-info">
+                <p class="card-number">03</p>
+                <h3 class="card-title">Jing Hua Performing Arts Center</h3>
+                <p class="card-meta">SCI-Arc &middot; Spring 2022 &middot; Thom Mayne Studio</p>
+                <div class="card-tags">
+                    <span class="card-tag">Building</span>
+                    <span class="card-tag">Performance</span>
+                    <span class="card-tag">Morphosis</span>
+                </div>
+            </div>
+            <span class="coming-soon-badge">Coming Soon</span>
         </div>
-    </section>
 
-    <section class="project-closer section-dark">
-        <img src="EXTRACTED_IMAGES/SPDP/spdp-raw-19.jpg" alt="South Park Data Park - Atmospheric" class="closer-image fade-in" loading="lazy">
-    </section>
-
-    <!-- PROJECT 2: HYDRANTIS -->
-    <section class="project-opener section-dark" id="hydrantis">
-        <div class="project-opener-content fade-in">
-            <h2 class="project-title">Hydrantis: Irwindale Reimagined</h2>
-            <p class="project-credits">SCI-Arc  ·  Design of Cities  ·  Fall 2021  ·  Eui-Sung Yi  ·  ★ Exhibited, SCI-Arc Symposium</p>
-            <p class="project-concept">The San Gabriel River has been managed, channelized, and redirected for 250 years — yet its flood infrastructure remains entirely invisible to the settlements built around it. Hydrantis proposes to reverse this: a proto-city of 250,000 residents whose street grid, housing typology, and public space are derived entirely from the existing flood management system. The city's ground plane is designed for two simultaneous states — normal conditions and the 100-year flood event — so that the infrastructure is never hidden but always inhabited.</p>
-        </div>
-    </section>
-
-    <section class="project-gallery section-light">
-        <div class="gallery-grid">
-            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-1-top.jpg" alt="Hydrantis - Site 1" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-2-top.jpg" alt="Hydrantis - Plan 2" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-2-mid.jpg" alt="Hydrantis - Detail 2" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-3-top.jpg" alt="Hydrantis - Section 3" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-4-top.jpg" alt="Hydrantis - Perspective 4" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-4-bot.jpg" alt="Hydrantis - Detail 4B" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-5-top.jpg" alt="Hydrantis - Study 5" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-6-top.jpg" alt="Hydrantis - Final 6" class="gallery-image fade-in" loading="lazy">
-        </div>
-    </section>
-
-    <section class="project-closer section-dark">
-        <img src="EXTRACTED_IMAGES/HYDRANTIS/hyd-6-mid.jpg" alt="Hydrantis - Atmospheric" class="closer-image fade-in" loading="lazy">
-    </section>
-
-    <!-- PROJECT 3: JING HUA -->
-    <section class="project-opener section-dark" id="jinghua">
-        <div class="project-opener-content fade-in">
-            <h2 class="project-title">Jing Hua Performing Arts Center</h2>
-            <p class="project-credits">SCI-Arc  ·  Spring 2022  ·  Thom Mayne Studio</p>
-            <p class="project-concept">Most performing arts centers resolve the conflict between performance and rehearsal by separating them: back-of-house versus front-of-house, servant versus served. Jing Hua refuses this separation. The building is organized around a single continuous folded surface that compresses and expands between the three program states — rehearsal, performance, and the still hours between — so that the boundary between backstage, lobby, and outdoor terrace is not fixed but calibrated to the time of day and the event.</p>
-        </div>
-    </section>
-
-    <section class="project-gallery section-light">
-        <div class="gallery-grid">
-            <img src="EXTRACTED_IMAGES/JINGHUA/jinghua-01.jpg" alt="Jing Hua - Exterior 01" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/JINGHUA/jinghua-05.jpg" alt="Jing Hua - Interior 05" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/JINGHUA/jinghua-10.jpg" alt="Jing Hua - Section 10" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/JINGHUA/jinghua-15.jpg" alt="Jing Hua - Detail 15" class="gallery-image fade-in" loading="lazy">
-        </div>
-    </section>
-
-    <section class="project-closer section-dark">
-        <img src="EXTRACTED_IMAGES/JINGHUA/jinghua-20.jpg" alt="Jing Hua - Atmospheric" class="closer-image fade-in" loading="lazy">
-    </section>
-
-    <!-- PROFESSIONAL SECTION BREAK -->
-    <section class="professional-break section-dark" id="professional">
-        <div class="professional-content fade-in">
-            <h2 class="professional-title">Professional Work</h2>
-            <p class="professional-statement">At Morphosis (2021–2024), I contributed to international competition research, parametric massing development, and site analysis on projects at 59-hectare masterplan scale — and to the editorial work behind Morphosis: M3 (Rizzoli, 2024). The projects shown here represent the intersection of logistics infrastructure, urban form, and the firm's computational design methods.</p>
-        </div>
-    </section>
-
-    <!-- PROJECT 4: FOOD BASKET TRADE CENTER -->
-    <section class="project-opener section-dark" id="food-basket">
-        <div class="project-opener-content fade-in">
-            <h2 class="project-title">Food Basket Trade Center</h2>
-            <p class="project-credits">Morphosis  ·  International Competition  ·  2023  ·  Beijing, China  ·  59 HA</p>
-            <p class="project-concept">China's wholesale food infrastructure treats the public as peripheral — warehouse-scale logistics beside, not within, public life. This 59-hectare competition proposal outside Beijing derives its masterplan from bamboo weaving logic: a structural analogy that interlocks cold storage, trading floor, processing, and public market into a continuous section, so that interior and exterior circulate through each other rather than beside each other. Contributed at Morphosis as competition researcher and parametric massing analyst.</p>
-        </div>
-    </section>
-
-    <section class="project-gallery section-light">
-        <div class="gallery-grid">
-            <img src="EXTRACTED_IMAGES/FOOD_BASKET/fb-render-01.jpg" alt="Food Basket Trade Center - Render 01" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/FOOD_BASKET/fb-axon-exploded.jpg" alt="Food Basket Trade Center - Axonometric" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/FOOD_BASKET/fb-siteplan.jpg" alt="Food Basket Trade Center - Site Plan" class="gallery-image fade-in" loading="lazy">
-            <img src="EXTRACTED_IMAGES/FOOD_BASKET/fb-plan-01.jpg" alt="Food Basket Trade Center - Plan 01" class="gallery-image fade-in" loading="lazy">
-        </div>
-    </section>
-
-    <section class="project-closer section-dark">
-        <img src="EXTRACTED_IMAGES/FOOD_BASKET/fb-axon-prog.jpg" alt="Food Basket Trade Center - Atmospheric" class="closer-image fade-in" loading="lazy">
-    </section>
-
-    <!-- CLOSING -->
-    <section class="closing section-dark" id="closing">
-        <div class="closing-content fade-in">
-            <p class="closing-statement">Available for graduate school and professional opportunities.</p>
-            <p class="closing-location">Los Angeles — open to relocation.</p>
-            <a href="mailto:henrychu1122@gmail.com" class="closing-email">henrychu1122@gmail.com</a>
-        </div>
-    </section>
-
-    <!-- LIGHTBOX -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
-        <div class="lightbox-content">
-            <img id="lightboxImage" src="" alt="">
+        <!-- PROJECT 4: FOOD BASKET -->
+        <div class="project-card fade-in delay-3">
+            <div class="card-image">
+                <img src="EXTRACTED_IMAGES/FOOD_BASKET/fb-render-01.jpg" alt="Food Basket Trade Center - Exterior render" loading="lazy">
+            </div>
+            <div class="card-info">
+                <p class="card-number">04</p>
+                <h3 class="card-title">Food Basket Trade Center</h3>
+                <p class="card-meta">Morphosis &middot; International Competition &middot; 2023 &middot; Beijing &middot; 59 HA</p>
+                <div class="card-tags">
+                    <span class="card-tag">Masterplan</span>
+                    <span class="card-tag">Logistics</span>
+                    <span class="card-tag">Competition</span>
+                </div>
+            </div>
+            <span class="coming-soon-badge">Coming Soon</span>
         </div>
     </div>
 
+    <!-- ── PROFESSIONAL ── -->
+    <section class="pro-section" id="professional">
+        <div class="pro-inner">
+            <p class="pro-label fade-in">Professional Work</p>
+            <p class="pro-statement fade-in delay-1">At Morphosis (2021&ndash;2024), I contributed to international competition research, parametric massing development, and site analysis on projects at 59-hectare masterplan scale &mdash; and to the editorial work behind <em>Morphosis: M3</em> (Rizzoli, 2024). The projects shown here represent the intersection of logistics infrastructure, urban form, and the firm&rsquo;s computational design methods.</p>
+        </div>
+    </section>
+
+    <!-- ── CLOSING / CONTACT ── -->
+    <section class="closing" id="contact">
+        <p class="closing-statement fade-in">Available for graduate school and professional opportunities.</p>
+        <p class="closing-location fade-in delay-1">Los Angeles &mdash; open to relocation.</p>
+        <a href="mailto:hello@henrychu.studio" class="closing-email fade-in delay-2">hello@henrychu.studio</a>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Henry Chu. All rights reserved.</p>
+    </footer>
+
+    <!-- ── SCRIPTS ── -->
     <script>
-        // NAVIGATION
-        const nav = document.getElementById('mainNav');
-        const navHamburger = document.getElementById('navHamburger');
-        const navMobileMenu = document.getElementById('navMobileMenu');
-
-        let lastScrollY = 0;
-        let ticking = false;
-
-        function updateNavVisibility() {
-            const scrollY = window.scrollY;
-            if (scrollY > 100) {
-                nav.classList.add('visible');
-            } else {
-                nav.classList.remove('visible');
-            }
-            lastScrollY = scrollY;
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(updateNavVisibility);
-                ticking = true;
-            }
-        }, { passive: true });
-
-        navHamburger.addEventListener('click', () => {
-            navHamburger.classList.toggle('active');
-            navMobileMenu.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navHamburger.classList.remove('active');
-                navMobileMenu.classList.remove('active');
-            });
-        });
-
-        // SCROLL ANIMATIONS
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+        // Navigation visibility on scroll
+        (function() {
+            var nav = document.getElementById('mainNav');
+            var ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        if (window.scrollY > 80) {
+                            nav.classList.add('visible');
+                        } else {
+                            nav.classList.remove('visible');
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
                 }
+            }, { passive: true });
+        })();
+
+        // Hamburger menu
+        (function() {
+            var btn = document.getElementById('hamburger');
+            var menu = document.getElementById('mobileMenu');
+            btn.addEventListener('click', function() {
+                btn.classList.toggle('active');
+                menu.classList.toggle('active');
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // LIGHTBOX
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImage = document.getElementById('lightboxImage');
-        const lightboxClose = document.querySelector('.lightbox-close');
-
-        document.querySelectorAll('.gallery-image, .closer-image').forEach(img => {
-            img.addEventListener('click', () => {
-                lightboxImage.src = img.src;
-                lightboxImage.alt = img.alt;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        lightboxClose.addEventListener('click', closeLightbox);
-
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
+            var links = menu.querySelectorAll('a');
+            for (var i = 0; i < links.length; i++) {
+                links[i].addEventListener('click', function() {
+                    btn.classList.remove('active');
+                    menu.classList.remove('active');
+                });
             }
-        });
+        })();
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox();
+        // Scroll animations (IntersectionObserver)
+        (function() {
+            var observer = new IntersectionObserver(function(entries) {
+                for (var i = 0; i < entries.length; i++) {
+                    if (entries[i].isIntersecting) {
+                        entries[i].target.classList.add('visible');
+                        observer.unobserve(entries[i].target);
+                    }
+                }
+            }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+            var els = document.querySelectorAll('.fade-in');
+            for (var i = 0; i < els.length; i++) {
+                observer.observe(els[i]);
             }
-        });
+        })();
 
-        // SCROLL INDICATOR CLICK
-        document.querySelector('.cover-scroll-indicator').addEventListener('click', () => {
-            document.getElementById('intro').scrollIntoView({ behavior: 'smooth' });
+        // Scroll cue click
+        document.getElementById('scrollCue').addEventListener('click', function() {
+            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
         });
     </script>
 
